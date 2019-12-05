@@ -1,11 +1,14 @@
-def log(message, level):
-    print(level + ": " + message)
-    log(message, level)
+import logging.Logger
 
 
-def main():
-    print("start")
+class CentralUnit:
 
+    def log(message, level):
+        print(level + ": " + message)
+        logging(message, level)
 
-if __name__ == '__main__':
-    main()
+    def main(self):
+        print("start")
+
+    if __name__ == '__main__':
+        main()
