@@ -3,6 +3,7 @@ class CentralUnit:
     def __init__(self):
         self.receiver = 1
         self.sender = 2
+        self.sensor = 3
 
     def log(message, level):
         print(level + ": " + message)
