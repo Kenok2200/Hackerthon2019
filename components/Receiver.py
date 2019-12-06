@@ -3,7 +3,7 @@ class Receiver():
         self.signal = 0
 
     def get_signal(self):
-        return self.signal;
+        return self.signal
 
     def set_signal(self, signal):
         self.signal = signal

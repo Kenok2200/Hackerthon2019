@@ -1,0 +1,12 @@
+{
+  "lamps": {
+    "north lamps": {
+      "lamp 1": "1",
+      "lamp 2": "2"
+    },
+    "south lamps": {
+      "lamp 1": "3",
+      "lamp 2": "4"
+    }
+  }
+}
