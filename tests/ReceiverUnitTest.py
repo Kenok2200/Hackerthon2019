@@ -1,6 +1,6 @@
 import unittest
 
-from Receiver import Receiver
+from components.Receiver import Receiver
 
 
 class ReceiverUnitTest(unittest.TestCase):
