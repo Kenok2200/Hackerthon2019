@@ -1,13 +1,15 @@
 import json
 
+from components.Receiver import Receiver
 from components.Sender import Sender
+from components.Sensor import Sensor
 
 
 class CentralUnit:
 
     def __init__(self):
-        self.receiver = 1
-        self.sensor = 3
+        self.receiver = Receiver
+        self.sensor = Sensor
         self.config = self.load_config_file("config.json")
         self.sender = Sender(self.config["lamps"])
 
