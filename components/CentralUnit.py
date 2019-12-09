@@ -9,11 +9,11 @@ from components.Sensor import Sensor
 class CentralUnit:
 
     def __init__(self):
-        self.lamp = Lamp
-        self.receiver = Receiver
-        self.sensor = Sensor
         self.config = self.load_config_file("config.json")
         self.sender = Sender(self.config["lamps"])
+        self.sensor = Sensor(self.config["raspberry"]["echo"], self.config["raspberry"]["trigger"])
+        self.lamp = Lamp
+        self.receiver = Receiver
 
     def log(message, level):
         print(level + ": " + message)
