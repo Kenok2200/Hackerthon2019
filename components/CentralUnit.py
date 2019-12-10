@@ -61,6 +61,7 @@ class CentralUnit:
                           )
 
     def ligth_up(self):
+        self.lamp.ligth_on()
 
     def use_signal(self, post):
         if self.standby:
