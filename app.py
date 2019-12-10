@@ -17,6 +17,7 @@ def receive_signal():
 
     # TODO Receiver
     response = app.response_class(
+        data,
         status=200,
         mimetype='application/json'
     )
