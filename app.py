@@ -17,7 +17,6 @@ def receive_signal():
 
     # TODO Receiver
     response = app.response_class(
-        data,
         status=200,
         mimetype='application/json'
     )
@@ -31,6 +30,7 @@ def send_sensor_status():
         status=200,
         mimetype='application/json'
     )
+    return response
 
 
 if __name__ == '__main__':
