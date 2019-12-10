@@ -1,5 +1,7 @@
 import json
 
+import requests
+
 from components.Lamp import Lamp
 from components.Receiver import Receiver
 from components.Sender import Sender
@@ -14,6 +16,8 @@ class CentralUnit:
         self.sensor = Sensor(self.config["raspberry"]["echo"], self.config["raspberry"]["trigger"])
         self.lamp = Lamp
         self.receiver = Receiver
+        self.standby = False
+        self.direction = ""
 
     def log(message, level):
         print(level + ": " + message)
@@ -23,13 +27,46 @@ class CentralUnit:
         with open(filepath, 'r') as config_file:
             return json.load(config_file)
 
+    def ping_all(self):
+        for northlamps in self.config["lamps"]["north"]:
+            requests.post(northlamps,
+                          data=None,
+                          json=self.config["counter"],
+                          headers={'Content-Type': 'application/json'}
+                          )
+        for southlamps in self.config["lamps"]["south"]:
+            requests.post(southlamps,
+                          data=None,
+                          json=self.config["counter"],
+                          headers={'Content-Type': 'application/json'}
+                          )
 
-def main():
-    print("start")
-    central_unit = CentralUnit()
-    # TODO Here happens the Magic
-    pass
+    def get_direction(self, post):
+        for northlamps in self.config["lamps"]["north"]:
+            if northlamps == post["sender"]:
+                self.direction = "north"
+        for southlamps in self.config["lamps"]["south"]:
+            if southlamps == post["sender"]:
+                self.direction = "south"
 
+    def ping_to_direction(self):
+        for lamps in self.config["lamps"][self.direction]:
+            requests.post(lamps,
+                          data=None,
+                          json={
+                              "counter": 0,
+                              "url": self.config["signal"]["url"]
+                          },
+                          headers={'Content-Type': 'application/json'}
+                          )
 
-if __name__ == '__main__':
-    main()
+    def ligth_up(self):
+
+    def use_signal(self, post):
+        if self.standby:
+
+            self.ping_to_directon
+            self.ligth_up
+
+        else:
+            self.ping_all()
