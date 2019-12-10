@@ -15,7 +15,7 @@ def health_check():
 def receive_signal():
     data = request.json
     if central_unit.standby:
-        central_unit.ligth_up()
+        central_unit.lamp().ligth_on()
     else:
         central_unit.get_direction(data)
         central_unit.standby = True

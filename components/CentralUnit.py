@@ -30,7 +30,7 @@ class CentralUnit:
     def ping_all(self):
         for northlamps in self.config["lamps"]["north"]:
             try:
-                requests.post(northlamps + ":5000/signal",
+                requests.post(self.config["lamps"]["south"][northlamps] + ":5000/signal",
                               data=None,
                               json=self.config["counter"],
                               headers={'Content-Type': 'application/json'}
@@ -40,7 +40,7 @@ class CentralUnit:
         for southlamps in self.config["lamps"]["south"]:
             try:
 
-                requests.post(southlamps + ":5000/signal",
+                requests.post(self.config["lamps"]["south"][southlamps] + ":5000/signal",
                               data=None,
                               json=self.config["counter"],
                               headers={'Content-Type': 'application/json'}
@@ -50,16 +50,16 @@ class CentralUnit:
 
     def get_direction(self, post):
         for northlamps in self.config["lamps"]["north"]:
-            if northlamps == post["sender"]:
+            if self.config["lamps"]["south"][northlamps] == post["sender"]:
                 self.direction = "north"
         for southlamps in self.config["lamps"]["south"]:
-            if southlamps == post["sender"]:
+            if self.config["lamps"]["south"][southlamps] == post["sender"]:
                 self.direction = "south"
 
     def ping_to_direction(self):
         for lamps in self.config["lamps"][self.direction]:
             try:
-                requests.post(lamps + ":5000/signal",
+                requests.post(self.config["lamps"][self.direction][lamps] + ":5000/signal",
                               data=None,
                               json={
                                   "counter": 0,
@@ -70,14 +70,11 @@ class CentralUnit:
             except:
                 print("failed to ping into direction")
 
-    def ligth_up(self):
-        self.lamp.ligth_on()
-
     def use_signal(self):
         if self.standby:
 
-            self.ping_to_directon()
-            self.ligth_up()
+            self.ping_to_direction()
+            self.lamp().ligth_on()
 
         else:
             self.ping_all()
