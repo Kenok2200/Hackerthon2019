@@ -32,7 +32,7 @@ class CentralUnit:
             try:
                 requests.post("http://" + self.config["lamps"]["south"][northlamps] + ":5000/signal",
                               data=None,
-                              json=self.config["counter"],
+                              json=self.config["signal"],
                               headers={'Content-Type': 'application/json'}
                               )
             except:
@@ -42,7 +42,7 @@ class CentralUnit:
 
                 requests.post("http://" + self.config["lamps"]["south"][southlamps] + ":5000/signal",
                               data=None,
-                              json=self.config["counter"],
+                              json=self.config["signal"],
                               headers={'Content-Type': 'application/json'}
                               )
             except:
