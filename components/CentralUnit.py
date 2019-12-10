@@ -59,7 +59,7 @@ class CentralUnit:
     def ping_to_direction(self):
         for lamps in self.config["lamps"][self.direction]:
             try:
-                requests.post(lamps + ":5000//signal",
+                requests.post(lamps + ":5000/signal",
                               data=None,
                               json={
                                   "counter": 0,
