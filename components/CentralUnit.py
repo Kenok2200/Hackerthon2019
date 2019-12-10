@@ -30,7 +30,7 @@ class CentralUnit:
     def ping_all(self):
         for northlamps in self.config["lamps"]["north"]:
             try:
-                requests.post(self.config["lamps"]["south"][northlamps] + ":5000/signal",
+                requests.post("http://" + self.config["lamps"]["south"][northlamps] + ":5000/signal",
                               data=None,
                               json=self.config["counter"],
                               headers={'Content-Type': 'application/json'}
@@ -40,7 +40,7 @@ class CentralUnit:
         for southlamps in self.config["lamps"]["south"]:
             try:
 
-                requests.post(self.config["lamps"]["south"][southlamps] + ":5000/signal",
+                requests.post("http://" + self.config["lamps"]["south"][southlamps] + ":5000/signal",
                               data=None,
                               json=self.config["counter"],
                               headers={'Content-Type': 'application/json'}
@@ -59,7 +59,7 @@ class CentralUnit:
     def ping_to_direction(self):
         for lamps in self.config["lamps"][self.direction]:
             try:
-                requests.post(self.config["lamps"][self.direction][lamps] + ":5000/signal",
+                requests.post("http://" + self.config["lamps"][self.direction][lamps] + ":5000/signal",
                               data=None,
                               json={
                                   "counter": 0,

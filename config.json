@@ -3,12 +3,12 @@
     "north": {
     },
     "south": {
-      "lamp 1": "192.168.0.1"
+      "lamp 1": "127.0.0.1"
     }
   },
   "signal": {
     "counter": 1,
-    "sender": "192.168.0.2"
+    "sender": "127.0.0.1"
   },
   "raspberry": {
     "echo": 23,
