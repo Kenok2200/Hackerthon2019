@@ -26,7 +26,6 @@ def receive_signal():
 
 @app.route("/sensor", methods=["Post"])
 def send_sensor_status():
-    data = request.json
     # Todo sensor magic
     response = app.response_class(
         status=200,
