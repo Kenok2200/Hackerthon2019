@@ -40,7 +40,7 @@ class CentralUnit:
         for southlamps in self.config["lamps"]["south"]:
             try:
 
-                requests.post(southlamps + ":5000//signal",
+                requests.post(southlamps + ":5000/signal",
                               data=None,
                               json=self.config["counter"],
                               headers={'Content-Type': 'application/json'}
