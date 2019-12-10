@@ -1,17 +1,14 @@
 {
   "lamps": {
     "north": {
-      "lamp 1": "url",
-      "lamp 2": ""
     },
     "south": {
-      "lamp 1": "",
-      "lamp 2": ""
+      "lamp 1": "192.168.0.1"
     }
   },
   "signal": {
     "counter": 1,
-    "sender": "url"
+    "sender": "192.168.0.2"
   },
   "raspberry": {
     "echo": 23,
