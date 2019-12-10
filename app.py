@@ -3,7 +3,7 @@ from flask import Flask, request
 from components.CentralUnit import CentralUnit
 
 app = Flask(__name__)
-central_unit = CentralUnit
+central_unit = CentralUnit()
 
 
 @app.route("/")

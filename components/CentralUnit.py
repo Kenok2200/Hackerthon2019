@@ -29,17 +29,24 @@ class CentralUnit:
 
     def ping_all(self):
         for northlamps in self.config["lamps"]["north"]:
-            requests.post(northlamps + ":5000/signal",
-                          data=None,
-                          json=self.config["counter"],
-                          headers={'Content-Type': 'application/json'}
-                          )
+            try:
+                requests.post(northlamps + ":5000/signal",
+                              data=None,
+                              json=self.config["counter"],
+                              headers={'Content-Type': 'application/json'}
+                              )
+            except:
+                print("failed to ping " + northlamps)
         for southlamps in self.config["lamps"]["south"]:
-            requests.post(southlamps + ":5000//signal",
-                          data=None,
-                          json=self.config["counter"],
-                          headers={'Content-Type': 'application/json'}
-                          )
+            try:
+
+                requests.post(southlamps + ":5000//signal",
+                              data=None,
+                              json=self.config["counter"],
+                              headers={'Content-Type': 'application/json'}
+                              )
+            except:
+                print("failed to ping " + southlamps)
 
     def get_direction(self, post):
         for northlamps in self.config["lamps"]["north"]:
@@ -51,23 +58,26 @@ class CentralUnit:
 
     def ping_to_direction(self):
         for lamps in self.config["lamps"][self.direction]:
-            requests.post(lamps + ":5000//signal",
-                          data=None,
-                          json={
-                              "counter": 0,
-                              "url": self.config["signal"]["url"]
-                          },
-                          headers={'Content-Type': 'application/json'}
-                          )
+            try:
+                requests.post(lamps + ":5000//signal",
+                              data=None,
+                              json={
+                                  "counter": 0,
+                                  "url": self.config["signal"]["url"]
+                              },
+                              headers={'Content-Type': 'application/json'}
+                              )
+            except:
+                print("failed to ping into direction")
 
     def ligth_up(self):
         self.lamp.ligth_on()
 
-    def use_signal(self, post):
+    def use_signal(self):
         if self.standby:
 
-            self.ping_to_directon
-            self.ligth_up
+            self.ping_to_directon()
+            self.ligth_up()
 
         else:
             self.ping_all()
