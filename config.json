@@ -11,8 +11,7 @@
   },
   "signal": {
     "counter": 1,
-    "sender": "url",
-    "ligth_on"
+    "sender": "url"
   },
   "raspberry": {
     "echo": 23,
