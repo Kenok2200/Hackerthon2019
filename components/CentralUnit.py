@@ -35,6 +35,7 @@ class CentralUnit:
                               json=self.config["signal"],
                               headers={'Content-Type': 'application/json'}
                               )
+
             except:
                 print("failed to ping " + northlamps)
         for southlamps in self.config["lamps"]["south"]:
