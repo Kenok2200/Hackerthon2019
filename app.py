@@ -38,5 +38,11 @@ def send_sensor_status():
     return response
 
 
+@app.route("/timer", methods=["Post"])
+def tourn_of_standby():
+    print("turn of standby")
+    central_unit.standby = False
+
+
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080)
