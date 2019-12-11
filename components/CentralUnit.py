@@ -28,6 +28,7 @@ class CentralUnit:
             return json.load(config_file)
 
     def ping_all(self):
+        print("try to ping all")
         for northlamps in self.config["lamps"]["north"]:
             try:
                 requests.post("http://" + self.config["lamps"]["south"][northlamps] + ":8080/signal",
@@ -37,7 +38,7 @@ class CentralUnit:
                               )
 
             except:
-                print("failed to ping " + northlamps)
+                print("ping all failed to ping " + northlamps)
         for southlamps in self.config["lamps"]["south"]:
             try:
 
@@ -47,17 +48,21 @@ class CentralUnit:
                               headers={'Content-Type': 'application/json'}
                               )
             except:
-                print("failed to ping " + southlamps)
+                print("ping all failed to ping " + southlamps)
 
     def get_direction(self, post):
+        print("estimate direction")
         for northlamps in self.config["lamps"]["north"]:
             if self.config["lamps"]["south"][northlamps] == post["sender"]:
+                print("north")
                 self.direction = "north"
         for southlamps in self.config["lamps"]["south"]:
             if self.config["lamps"]["south"][southlamps] == post["sender"]:
+                print("south")
                 self.direction = "south"
 
     def ping_to_direction(self):
+        print("try to ping into direction")
         for lamps in self.config["lamps"][self.direction]:
             try:
                 requests.post("http://" + self.config["lamps"][self.direction][lamps] + ":8080/signal",
@@ -72,10 +77,12 @@ class CentralUnit:
                 print("failed to ping into direction")
 
     def use_signal(self):
+        print("try to use signal")
         if self.standby:
-
+            print("is on standby")
             self.ping_to_direction()
             self.lamp().ligth_on()
 
         else:
+            print("not on standby")
             self.ping_all()
