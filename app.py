@@ -42,6 +42,10 @@ def send_sensor_status():
 def tourn_of_standby():
     print("turn of standby")
     central_unit.standby = False
+    response = app.response_class(
+        status=200
+    )
+    return response
 
 
 if __name__ == '__main__':
