@@ -52,14 +52,20 @@ class CentralUnit:
 
     def get_direction(self, post):
         print("estimate direction")
-        for northlamps in self.config["lamps"]["north"]:
-            if self.config["lamps"]["south"][northlamps] == post["sender"]:
-                print("north")
-                self.direction = "north"
-        for southlamps in self.config["lamps"]["south"]:
-            if self.config["lamps"]["south"][southlamps] == post["sender"]:
-                print("south")
-                self.direction = "south"
+        if self.config["lamps"]["north"] != {}:
+            for northlamps in self.config["lamps"]["north"]:
+                if self.config["lamps"]["south"][northlamps] == post["sender"]:
+                    print("north")
+                    self.direction = "north"
+        else:
+            print("no north lamps")
+        if self.config["lamps"]["south"] != {}:
+            for southlamps in self.config["lamps"]["south"]:
+                if self.config["lamps"]["south"][southlamps] == post["sender"]:
+                    print("south")
+                    self.direction = "south"
+        else:
+            print("no south lamps")
 
     def ping_to_direction(self):
         print("try to ping into direction")
